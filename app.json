@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "Game",
+    "name": "SamWonder Memory Game",
     "slug": "Game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/SamWonder_simbolo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      
+      "image": "./assets/SamWonder_slogan.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,9 +18,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.samwonder.memorygame",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.samwonder.memorygame",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -28,6 +33,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Memory Game, matching pairs of characters"
   }
 }

@@ -1,36 +1,63 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 export default function WelcomeScreen({ navigation }) {
-  return (
-    <View style={styles.welcome}>
-      <View style={styles.top}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/SamWonder_simbolo.png")}
-        />
-        <Image
-          style={styles.samwonder}
-          source={require("../assets/Sam-Wonder_wordlogo-white.png")}
-        />
-        {/* <Text style={styles.welcome_text}>Memory Game</Text> */}
+  // const supportedURL = "https://google.com";
+  // const handlePress = useCallback(async () => {
+  //   await Linking.openURL(supportedURL);
+  // }
+  let [fontsLoaded] = useFonts({
+    KGPrimaryPenmanshipAlt: require("../assets/fonts/KGPrimaryPenmanshipAlt.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.welcome}>
+        <View style={styles.top}>
+          <Image
+            style={styles.logo}
+            source={require("../assets/SamWonder_simbolo.png")}
+          />
+          <Image
+            style={styles.samwonder}
+            source={require("../assets/Sam-Wonder_wordlogo-white.png")}
+          />
+          <Text style={styles.welcome_text}>Memory Game</Text>
+        </View>
+        <View style={styles.middle}>
+          <TouchableOpacity
+            style={styles.start_button}
+            onPress={() => navigation.navigate("Game")}
+          >
+            <Text style={styles.start_text}>Start</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottom}>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL("https://www.samwonder.com");
+            }}
+          >
+            <Text style={styles.link_text}>SamWonder.com</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.bottom}>
-        <TouchableOpacity
-          style={styles.start_button}
-          onPress={() => navigation.navigate("Game")}
-        >
-          <Text style={styles.start_text}>Start</Text>
-        </TouchableOpacity>
-        {/* <Image
-          style={styles.all}
-          source={require("../assets/animales/SW_all_blue_smiling2020.png")}
-        /> */}
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -42,15 +69,16 @@ const styles = StyleSheet.create({
   },
 
   top: { flex: 0.6 },
-  bottom: {
-    flex: 0.4,
+  middle: {
+    flex: 0.3,
     alignItems: "center",
   },
+  bottom: { flex: 0.1 },
 
   welcome_text: {
-    fontWeight: "bold",
-    // fontFamily:
-    fontSize: 30,
+    // fontWeight: "bold",
+    fontFamily: "KGPrimaryPenmanshipAlt",
+    fontSize: 35,
     textAlign: "center",
     color: "white",
   },
@@ -79,10 +107,17 @@ const styles = StyleSheet.create({
   },
 
   start_text: {
-    fontWeight: "bold",
-    fontSize: 20,
+    fontFamily: "KGPrimaryPenmanshipAlt",
+    fontSize: 25,
     textAlign: "center",
     color: "white",
+  },
+
+  link_text: {
+    fontSize: 25,
+    textAlign: "center",
+    color: "#1B1464",
+    fontFamily: "KGPrimaryPenmanshipAlt",
   },
 
   all: {
